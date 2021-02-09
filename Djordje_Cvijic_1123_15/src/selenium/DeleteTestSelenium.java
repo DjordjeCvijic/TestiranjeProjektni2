@@ -52,13 +52,26 @@ public class DeleteTestSelenium {
     }
     driver.findElement(By.cssSelector(".btn-success")).click();
     driver.findElement(By.linkText("View Student")).click();
-    driver.findElement(By.cssSelector(".fa")).click();
     try {
-      Thread.sleep(4000);
+	      Thread.sleep(1000);
+	    } catch (InterruptedException e) {
+	      e.printStackTrace();
+	    }
+    driver.get("http://localhost:4200/");
+    try {
+        Thread.sleep(1000);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    
+    driver.findElement(By.xpath("/html/body/app-root/div/app-student-list/div[1]/div[2]/div/table/tbody/tr/td[4]/button[1]")).click();
+    try {
+      Thread.sleep(1000);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
-    vars.put("x", driver.findElements(By.xpath("/html/body/app-root/div/app-student-list/div[1]/div[2]/div/table/thead/tr")).size());
+    vars.put("x", driver.findElements(By.xpath("/html/body/app-root/div/app-student-list/div[1]/div[2]/div/table/tbody/tr")).size());
+
     System.out.println(vars.get("x").toString());
     assertEquals( vars.get("x").toString(),"0");
   }

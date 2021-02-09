@@ -436,13 +436,48 @@
 			"response": []
 		},
 		{
+			"name": "Get After Delete By ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get student by id test\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"\r",
+							"   \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/student/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"student",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Delete Nonexistent ID",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"GDelete student by nonexistent id test\", function () {\r",
+							"pm.test(\"Delete student by nonexistent id test\", function () {\r",
 							"    pm.response.to.have.status(404);\r",
 							"   \r",
 							"});"

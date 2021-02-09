@@ -45,7 +45,7 @@ public void update() {
  driver.findElement(By.cssSelector(".form-group:nth-child(1) > .form-control")).click();
  driver.findElement(By.xpath("/html/body/app-root/div/app-add-student/div[1]/div[2]/div/form/div[1]/input")).sendKeys("marko");
  driver.findElement(By.cssSelector(".ng-invalid:nth-child(2)")).click();
- driver.findElement(By.cssSelector(".ng-invalid:nth-child(2)")).sendKeys("markovic");
+ driver.findElement(By.cssSelector(".ng-invalid:nth-child(2)")).sendKeys("markovic@email");
  driver.findElement(By.cssSelector(".ng-untouched")).click();
  {
    WebElement dropdown = driver.findElement(By.xpath("/html/body/app-root/div/app-add-student/div[1]/div[2]/div/form/div[3]/select"));
@@ -53,12 +53,23 @@ public void update() {
  }
  driver.findElement(By.cssSelector(".btn-success")).click();
  driver.findElement(By.linkText("View Student")).click();
- driver.findElement(By.cssSelector(".btn-info")).click();
+ try {
+     Thread.sleep(1500);
+   } catch (InterruptedException e) {
+     e.printStackTrace();
+   }
+   driver.get("http://localhost:4200/");
+   try {
+	      Thread.sleep(1500);
+	    } catch (InterruptedException e) {
+	      e.printStackTrace();
+	    }
+ driver.findElement(By.xpath("/html/body/app-root/div/app-student-list/div[1]/div[2]/div/table/tbody/tr/td[4]/button[2]")).click();
  driver.findElement(By.cssSelector(".form-group:nth-child(2) > .form-control")).click();
  driver.findElement(By.cssSelector(".form-group:nth-child(2) > .form-control")).click();
  driver.findElement(By.cssSelector(".form-group:nth-child(2) > .form-control")).sendKeys("janko");
  driver.findElement(By.cssSelector(".form-group:nth-child(3) > .form-control")).click();
- driver.findElement(By.cssSelector(".form-group:nth-child(3) > .form-control")).sendKeys("jankovic");
+ driver.findElement(By.cssSelector(".form-group:nth-child(3) > .form-control")).sendKeys("jankovic@email");
  driver.findElement(By.cssSelector(".ng-untouched:nth-child(2)")).click();
  {
    WebElement dropdown = driver.findElement(By.xpath("//*[@id=\"myModal\"]/div/div/form/div[2]/div[1]/div[3]/select"));
@@ -67,10 +78,15 @@ public void update() {
  driver.findElement(By.cssSelector(".ng-untouched:nth-child(2)")).click();
  driver.findElement(By.cssSelector(".btn-success")).click();
  driver.findElement(By.cssSelector(".btn-danger")).click();
+ try {
+     Thread.sleep(1500);
+   } catch (InterruptedException e) {
+     e.printStackTrace();
+   }
  driver.findElement(By.cssSelector("td:nth-child(1) ")).click();
  assertThat(driver.findElement(By.cssSelector("td:nth-child(1) ")).getText(), is("janko"));
  driver.findElement(By.cssSelector("td:nth-child(2)")).click();
- assertThat(driver.findElement(By.cssSelector("td:nth-child(2)")).getText(), is("jankovic"));
+ assertThat(driver.findElement(By.cssSelector("td:nth-child(2)")).getText(), is("jankovic@email"));
  driver.findElement(By.cssSelector("td:nth-child(3)")).click();
  assertThat(driver.findElement(By.cssSelector("td:nth-child(3)")).getText(), is("label=M-Tech"));
 }
